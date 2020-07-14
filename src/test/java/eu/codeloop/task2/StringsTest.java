@@ -43,7 +43,7 @@ public class StringsTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenStringLengthIsLessThenTwo(){
+    public void shouldReturnFalseWhenStringLengthIsLessThenTwo() {
         //given
         String str1 = "a";
         String str2 = "";
