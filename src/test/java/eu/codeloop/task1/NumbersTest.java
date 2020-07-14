@@ -22,15 +22,8 @@ public class NumbersTest {
         assertThat(numbers).containsOnly(1, 3);
     }
 
-    @Test
-    public void otherTestCases() {
-        // Numbers.findOddNumbers(Arrays.asList("1", "", "3"));
-        // Numbers.findOddNumbers(null);
-        // something more? what do you think? test them all!
-    }
-
     @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowIllegalArgumentExceptionWhenGivenArgumentIsNull(){
+    public void shouldThrowIllegalArgumentExceptionWhenGivenArgumentIsNull() {
         //given
         List<String> list = null;
 
@@ -39,7 +32,7 @@ public class NumbersTest {
     }
 
     @Test
-    public void shouldReturnEmptyListWhenEmptyListIsGiven(){
+    public void shouldReturnEmptyListWhenEmptyListIsGiven() {
         //given
         List<String> list = new ArrayList<>();
 
@@ -51,7 +44,7 @@ public class NumbersTest {
     }
 
     @Test
-    public void numbersShouldBeInCorrectOrderInTheResultList(){
+    public void numbersShouldBeInCorrectOrderInTheResultList() {
         //given
         List<String> list = new ArrayList<>();
         int a = 1;
@@ -67,7 +60,7 @@ public class NumbersTest {
     }
 
     @Test(expected = NumberFormatException.class)
-    public void sequenceShouldNotExceedsMaxIntegerValue(){
+    public void sequenceShouldNotExceedsMaxIntegerValue() {
         //given
         List<String> list = new ArrayList<>();
         list.add(String.valueOf(Integer.MAX_VALUE) + 1);
@@ -78,7 +71,7 @@ public class NumbersTest {
     }
 
     @Test
-    public void sequenceOfNumbersMethodShouldReturnTrueWhenSequenceIsIntegerNumber(){
+    public void sequenceOfNumbersMethodShouldReturnTrueWhenSequenceIsIntegerNumber() {
         //given
         String sequence1 = "7";
         String sequence2 = "-22";
@@ -96,7 +89,7 @@ public class NumbersTest {
     }
 
     @Test
-    public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceIsNotIntegerNumber(){
+    public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceIsNotIntegerNumber() {
         //given
         String sequence1 = "1.2";
         String sequence2 = "a1b2c3";
@@ -115,7 +108,7 @@ public class NumbersTest {
 
 
     @Test
-    public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceIsNull(){
+    public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceIsNull() {
         //given
         String sequence = null;
 
@@ -127,7 +120,7 @@ public class NumbersTest {
     }
 
     @Test
-    public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceLengthIsLessThanOne(){
+    public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceLengthIsLessThanOne() {
         //given
         String sequence = "";
 

@@ -11,26 +11,26 @@ public final class Numbers {
     }
 
     public static List<Integer> findOddNumbers(List<String> numbers) {
-        if(numbers == null)
+        if (numbers == null)
             throw new IllegalArgumentException("Given argument cannot be null!");
 
         List<Integer> resultList = new ArrayList<>();
 
-        if(numbers.isEmpty())
+        if (numbers.isEmpty())
             return resultList;
 
-        for(String numberSequence : numbers){
-            if(isSequenceOfNumbers(numberSequence)){
+        for (String numberSequence : numbers) {
+            if (isSequenceOfNumbers(numberSequence)) {
                 int extractedNumber = Integer.parseInt(numberSequence);
-                if(extractedNumber % 2 != 0)
+                if (extractedNumber % 2 != 0)
                     resultList.add(extractedNumber);
             }
         }
         return resultList;
     }
 
-    protected static boolean isSequenceOfNumbers(String sequence){
-        if(sequence == null || sequence.length() < 1)
+    protected static boolean isSequenceOfNumbers(String sequence) {
+        if (sequence == null || sequence.length() < 1)
             return false;
         Pattern pattern = Pattern.compile("-?\\d+");
         Matcher matcher = pattern.matcher(sequence);
