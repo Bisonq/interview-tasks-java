@@ -47,7 +47,7 @@ public class ListsTest {
         //given
         Collection<Book> books = null;
 
-        //when
+        //then
         assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapBy(books, Book::getId));
         assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapByV2(books, Book::getId));
     }
@@ -57,7 +57,7 @@ public class ListsTest {
         //given
         Collection<Book> books = null;
 
-        //when
+        //then
         assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapBy(books, null));
         assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapByV2(books, null));
     }
@@ -82,9 +82,13 @@ public class ListsTest {
         //then
         assertThat(mapBook1).isSameAs(lordOfTheRings);
         assertThat(mapBook2).isSameAs(mythicalManMonth);
+        assertThat(integerObjectMap).containsValues(lordOfTheRings, mythicalManMonth);
+        assertThat(integerObjectMap).containsOnlyKeys(lordOfTheRings.getId(), mythicalManMonth.getId());
 
         assertThat(mapBook1V2).isSameAs(lordOfTheRings);
         assertThat(mapBook2V2).isSameAs(mythicalManMonth);
+        assertThat(integerObjectMapV2).containsValues(lordOfTheRings, mythicalManMonth);
+        assertThat(integerObjectMapV2).containsOnlyKeys(lordOfTheRings.getId(), mythicalManMonth.getId());
     }
 
     @Test
@@ -123,8 +127,8 @@ public class ListsTest {
         Set<Integer> resultMapKeysV2 = integerObjectMapV2.keySet();
 
         //then
-        assertThat(resultMapKeys).contains(bookId1, bookId2);
-        assertThat(resultMapKeysV2).contains(bookId1, bookId2);
+        assertThat(resultMapKeys).containsOnly(bookId1, bookId2);
+        assertThat(resultMapKeysV2).containsOnly(bookId1, bookId2);
     }
 
     @Test
@@ -145,15 +149,14 @@ public class ListsTest {
         Set<String> resultMapKeysV2 = integerObjectMapV2.keySet();
 
         //then
-        assertThat(resultMapKeys).contains(bookTitle1, bookTitle2);
-        assertThat(resultMapKeysV2).contains(bookTitle1, bookTitle2);
+        assertThat(resultMapKeys).containsOnly(bookTitle1, bookTitle2);
+        assertThat(resultMapKeysV2).containsOnly(bookTitle1, bookTitle2);
     }
 
     @Test
     public void shouldReturnEmptyMapWhenElementInGivenCollectionIsNull() {
         //given
         List<Book> books = new ArrayList<>();
-        books.add(null);
         books.add(null);
 
         //when
