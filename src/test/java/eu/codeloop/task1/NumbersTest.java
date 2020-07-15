@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class NumbersTest {
 
@@ -22,13 +22,13 @@ public class NumbersTest {
         assertThat(numbers).containsOnly(1, 3);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowIllegalArgumentExceptionWhenGivenArgumentIsNull() {
         //given
         List<String> list = null;
 
-        //when
-        Numbers.findOddNumbers(list);
+        //then
+        assertThatIllegalArgumentException().isThrownBy(() -> Numbers.findOddNumbers(list));
     }
 
     @Test
@@ -47,27 +47,29 @@ public class NumbersTest {
     public void numbersShouldBeInCorrectOrderInTheResultList() {
         //given
         List<String> list = new ArrayList<>();
-        int a = 1;
-        int b = 3;
-        list.add(String.valueOf(a));
-        list.add(String.valueOf(b));
+        int inputValue1 = 1;
+        int inputValue2 = 3;
+        list.add(String.valueOf(inputValue1));
+        list.add(String.valueOf(inputValue2));
 
         //when
-        List<Integer> resultLst = Numbers.findOddNumbers(list);
+        List<Integer> resultList = Numbers.findOddNumbers(list);
+        int resultValue1 = resultList.get(0);
+        int resultValue2 = resultList.get(1);
 
         //then
-        assertThat(resultLst).contains(a, b);
+        assertThat(resultValue1).isEqualTo(inputValue1);
+        assertThat(resultValue2).isEqualTo(inputValue2);
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void sequenceShouldNotExceedsMaxIntegerValue() {
         //given
         List<String> list = new ArrayList<>();
         list.add(String.valueOf(Integer.MAX_VALUE) + 1);
 
-        //when
-        Numbers.findOddNumbers(list);
-
+        //then
+        assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() -> Numbers.findOddNumbers(list));
     }
 
     @Test
@@ -105,7 +107,6 @@ public class NumbersTest {
         assertThat(result2).isFalse();
         assertThat(result3).isFalse();
     }
-
 
     @Test
     public void sequenceOfNumbersMethodShouldReturnFalseWhenSequenceIsNull() {
