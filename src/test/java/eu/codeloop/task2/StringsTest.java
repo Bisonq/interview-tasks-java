@@ -3,6 +3,7 @@ package eu.codeloop.task2;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class StringsTest {
 
@@ -33,13 +34,13 @@ public class StringsTest {
         assertThat(hasDuplicateChars2).isFalse();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowIllegalArgumentExceptionWhenArgumentIsNull() {
         //given
         String str = null;
 
-        //when
-        Strings.hasDuplicateChars(str);
+        //then
+        assertThatIllegalArgumentException().isThrownBy(() -> Strings.hasDuplicateChars(str));
     }
 
     @Test
