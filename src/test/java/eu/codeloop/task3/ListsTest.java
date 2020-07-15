@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class ListsTest {
 
@@ -28,7 +29,7 @@ public class ListsTest {
     }
 
     @Test
-    public void shouldReturnEmptyMapWhenEmptyCollectionIsGiven(){
+    public void shouldReturnEmptyMapWhenEmptyCollectionIsGiven() {
         //given
         Collection<Book> books = new ArrayList<>();
 
@@ -42,27 +43,27 @@ public class ListsTest {
     }
 
     @Test
-    public void shouldReturnIllegalArgumentExceptionWhenGivenCollectionIsNull(){
+    public void shouldReturnIllegalArgumentExceptionWhenGivenCollectionIsNull() {
         //given
         Collection<Book> books = null;
 
         //when
-        assertThatIllegalArgumentException().isThrownBy( () -> Lists.mapBy(books, Book::getId));
-        assertThatIllegalArgumentException().isThrownBy( () -> Lists.mapByV2(books, Book::getId));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapBy(books, Book::getId));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapByV2(books, Book::getId));
     }
 
     @Test
-    public void shouldReturnIllegalArgumentExceptionWhenGivenFunctionIsNull(){
+    public void shouldReturnIllegalArgumentExceptionWhenGivenFunctionIsNull() {
         //given
         Collection<Book> books = null;
 
         //when
-        assertThatIllegalArgumentException().isThrownBy( () -> Lists.mapBy(books, null));
-        assertThatIllegalArgumentException().isThrownBy( () -> Lists.mapByV2(books, null));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapBy(books, null));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lists.mapByV2(books, null));
     }
 
     @Test
-    public void resultMapShouldContainsTheSameObjectsThatGivenCollectionContains(){
+    public void resultMapShouldContainsTheSameObjectsThatGivenCollectionContains() {
         //given
         Book lordOfTheRings = new Book(1, "Lord of the Rings");
         Book mythicalManMonth = new Book(2, "Mythical Man Month");
@@ -87,7 +88,7 @@ public class ListsTest {
     }
 
     @Test
-    public void resultMapShouldHaveSameLengthThatGivenCollection(){
+    public void resultMapShouldHaveSameLengthThatGivenCollection() {
         //given
         Book lordOfTheRings = new Book(1, "Lord of the Rings");
         Book mythicalManMonth = new Book(2, "Mythical Man Month");
@@ -106,7 +107,7 @@ public class ListsTest {
     }
 
     @Test
-    public void valuesInResultMapShouldBeGroupByBookID(){
+    public void valuesInResultMapShouldBeGroupByBookID() {
         //given
         int bookId1 = 1;
         int bookId2 = 2;
@@ -127,7 +128,7 @@ public class ListsTest {
     }
 
     @Test
-    public void valuesInResultMapShouldBeGroupByBookTitle(){
+    public void valuesInResultMapShouldBeGroupByBookTitle() {
         //given
         String bookTitle1 = "Lord of the Rings";
         String bookTitle2 = "Mythical Man Month";
@@ -149,7 +150,7 @@ public class ListsTest {
     }
 
     @Test
-    public void shouldReturnEmptyMapWhenElementInGivenCollectionIsNull(){
+    public void shouldReturnEmptyMapWhenElementInGivenCollectionIsNull() {
         //given
         List<Book> books = new ArrayList<>();
         books.add(null);
@@ -165,7 +166,7 @@ public class ListsTest {
     }
 
     @Test
-    public void resultMapShouldContainOverwrittenElementsWhenTheGroupingValuesAreTheSame(){
+    public void resultMapShouldContainOverwrittenElementsWhenTheGroupingValuesAreTheSame() {
         //given
         String bookTitle1 = "Lord of the Rings";
         String bookTitle2 = "Lord of the Rings";

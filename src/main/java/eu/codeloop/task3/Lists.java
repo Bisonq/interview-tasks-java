@@ -1,6 +1,9 @@
 package eu.codeloop.task3;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -10,29 +13,26 @@ public final class Lists {
     }
 
     public static <K, V> Map<K, V> mapBy(Collection<V> collection, Function<? super V, ? extends K> mapper) {
-        if(collection == null || mapper == null)
+        if (collection == null || mapper == null)
             throw new IllegalArgumentException();
 
         Map<K, V> resultMap = new HashMap<>();
 
-        if(collection.isEmpty())
+        if (collection.isEmpty())
             return resultMap;
 
-        for(V value : collection)
-            if(value != null)
-            resultMap.put(mapper.apply(value), value);
+        for (V value : collection)
+            if (value != null)
+                resultMap.put(mapper.apply(value), value);
 
         return resultMap;
     }
 
     public static <K, V> Map<K, V> mapByV2(Collection<V> collection, Function<? super V, ? extends K> mapper) {
-        if(collection == null || mapper == null)
+        if (collection == null || mapper == null)
             throw new IllegalArgumentException();
-        if(collection.isEmpty())
+        if (collection.isEmpty())
             return new HashMap<>();
         return collection.stream().filter(Objects::nonNull).collect(Collectors.toMap(mapper, Function.identity(), (vOld, vNew) -> vNew));
-
-//        return collection.stream().filter(Objects::nonNull).map(v -> new AbstractMap.SimpleEntry<K,V>(mapper.apply(v), v)).
-//                collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (vOld, vNew) -> vNew));
     }
 }
