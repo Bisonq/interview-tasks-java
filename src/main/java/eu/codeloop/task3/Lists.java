@@ -19,6 +19,7 @@ public final class Lists {
             return resultMap;
 
         for(V value : collection)
+            if(value != null)
             resultMap.put(mapper.apply(value), value);
 
         return resultMap;
