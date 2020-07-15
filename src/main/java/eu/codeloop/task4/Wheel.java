@@ -1,10 +1,11 @@
 package eu.codeloop.task4;
 
-public class Wheel {
+public class Wheel extends Part{
 
     private final double diameter;
 
-    public Wheel(double diameter) {
+    public Wheel(double diameter, String brand) {
+        super(brand);
         this.diameter = diameter;
     }
 

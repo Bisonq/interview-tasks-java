@@ -1,10 +1,11 @@
 package eu.codeloop.task4;
 
-public class Engine {
+public class Engine extends Part{
 
     private final int horsepower;
 
-    public Engine(int horsepower) {
+    public Engine(int horsepower, String brand) {
+        super(brand);
         this.horsepower = horsepower;
     }
 
