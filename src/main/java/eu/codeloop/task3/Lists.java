@@ -1,8 +1,6 @@
 package eu.codeloop.task3;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -31,6 +29,9 @@ public final class Lists {
             throw new IllegalArgumentException();
         if(collection.isEmpty())
             return new HashMap<>();
-        return collection.stream().collect(Collectors.toMap(mapper, Function.identity(), (vOld, vNew) -> vNew));
+        return collection.stream().filter(Objects::nonNull).collect(Collectors.toMap(mapper, Function.identity(), (vOld, vNew) -> vNew));
+
+//        return collection.stream().filter(Objects::nonNull).map(v -> new AbstractMap.SimpleEntry<K,V>(mapper.apply(v), v)).
+//                collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (vOld, vNew) -> vNew));
     }
 }
